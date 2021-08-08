@@ -32,7 +32,14 @@ struct BullseyeView: View {
                         .opacity(0.9)
                     .padding(20)
                 
-                StatisticView()
+                HStack(alignment: .bottom, spacing: 10) {
+                    StatisticsView(title: "Счет", info: game.score)
+                    
+                    StatisticsView(title: "Цель", info: game.target)
+                    
+                    StatisticsView(title: "Раунд", info: game.shots)
+                }
+                .padding(20)
                 
                 SliderView(sliderValue: $value, game: game)
                 
