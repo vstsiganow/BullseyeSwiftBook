@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ShotsView: View {
-    var shots: Int
+    @EnvironmentObject var game: GameManager
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             Text("Попыток:")
             
-            Text("\(shots)")
+            Text("\(game.shots)")
                 .roundedText(color: .blue, font: 16, size: CGSize(width: 50, height: 50))
         }
         .padding(10)
@@ -23,6 +23,6 @@ struct ShotsView: View {
 
 struct ShotsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShotsView(shots: 5)
+        ShotsView()
     }
 }

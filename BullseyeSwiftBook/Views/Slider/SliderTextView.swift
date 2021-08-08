@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SliderTextView: View {
     var name: String
+    
     let size = CGSize(
         width: 40,
         height: 40
@@ -26,7 +27,6 @@ struct SliderTextView_Previews: PreviewProvider {
     }
 }
 
-
 struct RoundedTextModifier: ViewModifier {
     var color: Color
     var font: CGFloat
@@ -39,14 +39,5 @@ struct RoundedTextModifier: ViewModifier {
             .foregroundColor(color)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 3))
         
-    }
-}
-
-extension View {
-    public func roundedText(color: Color, font: CGFloat, size: CGSize) -> some View {
-        ModifiedContent(
-            content: self,
-            modifier: RoundedTextModifier(color: color, font: font, size: size)
-        )
     }
 }

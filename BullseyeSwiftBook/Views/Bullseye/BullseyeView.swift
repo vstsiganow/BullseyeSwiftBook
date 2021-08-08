@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct BullseyeView: View {
-    @State var target: Int = Int.random(in: 0...100)
     @State var value: Double = 50
-    @State var score: Int = 0
-    @State var shots: Int = 0
     @State var showResult = false
+    
+    @EnvironmentObject var game: GameManager
     
     let buttonSize = CGSize(
         width: 130,
@@ -24,9 +23,7 @@ struct BullseyeView: View {
             Color.orange
                 .opacity(0.6)
                 .ignoresSafeArea()
-            
-            
-            
+
             VStack(alignment: .center, spacing: 40) {
                 Text("Попади в цель!")
                     .font(.title)
@@ -35,9 +32,9 @@ struct BullseyeView: View {
                         .opacity(0.9)
                     .padding(20)
                 
-                StatisticView(score: score, target: target, shots: shots)
+                StatisticView()
                 
-                SliderView(sliderValue: $value, target: target)
+                SliderView(sliderValue: $value, game: game)
                 
                 BullseyeButton(
                     title: "Проверь точность!",
@@ -45,13 +42,16 @@ struct BullseyeView: View {
                     font: 16,
                     color: .red,
                     closure: {
-                        updateScore()
+                        game.updateGame(value: Float(value))
                         showResult = true
                     }
                 )
                 .alert(isPresented: $showResult, content: {
-                    Alert(title: Text(""), message: Text("Твоя точность - \(computeScore())%.\n Попробуешь еще?"), dismissButton: .default(Text("Еще раз!")))
-        
+                    Alert(
+                        title: Text(""),
+                        message: Text("Твоя точность - \( game.roundResult)%.\n Попробуешь еще?"),
+                        dismissButton: .default(Text("Еще раз!"))
+                    )
                 })
                 
                 BullseyeButton(
@@ -60,35 +60,13 @@ struct BullseyeView: View {
                     font: 16,
                     color: .blue,
                     closure: {
-                        resetScore()
+                        game.resetGame(value: Float(value))
                     }
                 )
                 
                 Spacer()
             }
         }
-    }
-    
-    private func computeScore() -> Int {
-        let difference = abs(target - lround(value))
-        return 100 - difference
-    }
-    
-    private func resetScore() {
-        score = 0
-        shots = 0
-        setNewTarget()
-    }
-    
-    private func setNewTarget() {
-        target = Int.random(in: 0...100)
-        //value = 50
-    }
-    
-    private func updateScore() {
-        score += computeScore()
-        shots += 1
-        setNewTarget()
     }
 }
 

@@ -10,9 +10,7 @@ import SwiftUI
 struct DynamicSlider: UIViewRepresentable {
     @Binding var value: Double
     
-    @State private var alpha: CGFloat = 1.0
-    
-    var target: Int
+    var game: GameManager
     
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider()
@@ -20,11 +18,9 @@ struct DynamicSlider: UIViewRepresentable {
         slider.minimumValue = 0
         slider.maximumValue = 100
         
-        slider.thumbTintColor = UIColor.red.withAlphaComponent(alpha)
+        slider.thumbTintColor = UIColor.red.withAlphaComponent(game.sliderAlpha)
         
         slider.addTarget(context.coordinator, action: #selector(Coordinator.valueChanged(_:)), for: .valueChanged)
-        
-        slider.addTarget(context.coordinator, action: #selector(Coordinator.aplhaChanged(_:)), for: .valueChanged)
         
         return slider
     }
@@ -34,21 +30,18 @@ struct DynamicSlider: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(value: $value, alpha: $alpha, target: target)
+        Coordinator(value: $value, game: game)
     }
 }
 
 extension DynamicSlider {
     class Coordinator: NSObject {
         @Binding var value: Double
-        @Binding var alpha: CGFloat
+        var game: GameManager
         
-        var target: Int
-        
-        init(value: Binding<Double>, alpha: Binding<CGFloat> ,target: Int) {
+        init(value: Binding<Double>, game: GameManager) {
             self._value = value
-            self.target = target
-            self._alpha = alpha
+            self.game = game
         }
         
         func getAlpha(value: Float, target: Int, const: Float ) -> CGFloat {
@@ -63,24 +56,20 @@ extension DynamicSlider {
         
         @objc func valueChanged(_ sender: UISlider) {
             let senderValue = sender.value
+
             value = Double(senderValue)
-        }
-        
-        @objc func aplhaChanged(_ sender: UISlider) {
-            let senderValue = sender.value
-            let const: Float = 50
             
-            let newAlpha = getAlpha(value: senderValue, target: target, const: const)
+            game.resetAlpha(value: senderValue)
             
-            sender.thumbTintColor = .red.withAlphaComponent(newAlpha)
+            sender.thumbTintColor = .red.withAlphaComponent(game.sliderAlpha)
         }
-        
+
     }
 }
 
 
 struct DynamicSlider_Previews: PreviewProvider {
     static var previews: some View {
-        DynamicSlider(value: .constant(40), target: 50)
+        DynamicSlider(value: .constant(40), game: GameManager())
     }
 }

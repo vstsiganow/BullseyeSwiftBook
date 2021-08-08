@@ -21,6 +21,8 @@
 		846D3C7126BD6CA300C603BC /* ShotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D3C7026BD6CA300C603BC /* ShotsView.swift */; };
 		846D3C7426BD6F5C00C603BC /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D3C7326BD6F5C00C603BC /* StatisticView.swift */; };
 		846D3C7626BE858A00C603BC /* DynamicSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D3C7526BE858A00C603BC /* DynamicSlider.swift */; };
+		846D3C7926C0414F00C603BC /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D3C7826C0414F00C603BC /* GameManager.swift */; };
+		846D3C7C26C05AB800C603BC /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D3C7B26C05AB800C603BC /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		846D3C7026BD6CA300C603BC /* ShotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotsView.swift; sourceTree = "<group>"; };
 		846D3C7326BD6F5C00C603BC /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		846D3C7526BE858A00C603BC /* DynamicSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSlider.swift; sourceTree = "<group>"; };
+		846D3C7826C0414F00C603BC /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		846D3C7B26C05AB800C603BC /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +76,9 @@
 		846D3C4A26BC8CF100C603BC /* BullseyeSwiftBook */ = {
 			isa = PBXGroup;
 			children = (
+				846D3C7A26C05AA700C603BC /* Extensions */,
 				846D3C6426BD1E3300C603BC /* Supporting Files */,
+				846D3C7726C0411A00C603BC /* Managers */,
 				846D3C6026BD1DF600C603BC /* Views */,
 				846D3C5126BC8CF500C603BC /* Assets.xcassets */,
 				846D3C5926BC8CF500C603BC /* Info.plist */,
@@ -155,12 +161,28 @@
 		846D3C7226BD6F3900C603BC /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
+				846D3C7326BD6F5C00C603BC /* StatisticView.swift */,
 				846D3C6C26BD68B100C603BC /* ScoreView.swift */,
 				846D3C6E26BD699100C603BC /* TargetView.swift */,
 				846D3C7026BD6CA300C603BC /* ShotsView.swift */,
-				846D3C7326BD6F5C00C603BC /* StatisticView.swift */,
 			);
 			path = Statistic;
+			sourceTree = "<group>";
+		};
+		846D3C7726C0411A00C603BC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				846D3C7826C0414F00C603BC /* GameManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		846D3C7A26C05AA700C603BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				846D3C7B26C05AB800C603BC /* View+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +262,10 @@
 				846D3C6726BD248800C603BC /* SliderView.swift in Sources */,
 				846D3C6926BD249600C603BC /* SliderTextView.swift in Sources */,
 				846D3C7126BD6CA300C603BC /* ShotsView.swift in Sources */,
+				846D3C7926C0414F00C603BC /* GameManager.swift in Sources */,
 				846D3C6D26BD68B100C603BC /* ScoreView.swift in Sources */,
 				846D3C6F26BD699100C603BC /* TargetView.swift in Sources */,
+				846D3C7C26C05AB800C603BC /* View+Extension.swift in Sources */,
 				846D3C4E26BC8CF100C603BC /* SceneDelegate.swift in Sources */,
 				846D3C5026BC8CF100C603BC /* BullseyeView.swift in Sources */,
 			);

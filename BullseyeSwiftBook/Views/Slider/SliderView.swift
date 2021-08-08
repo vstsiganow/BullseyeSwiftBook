@@ -9,15 +9,15 @@ import SwiftUI
 
 struct SliderView: View {
     @Binding var sliderValue: Double
-    let target: Int
+    var game: GameManager
     
     var body: some View {
         
         HStack(spacing: 10) {
             SliderTextView(name: "0")
             
-            //Slider(value: $sliderValue, in: 0...100, step: 1)
-            DynamicSlider(value: $sliderValue, target: target)
+            ///Slider(value: $sliderValue, in: 0...100, step: 1) // Оригинальный сладйдер SwiftUI для сравнения
+            DynamicSlider(value: $sliderValue, game: game)
             
             SliderTextView(name: "100")
         }
@@ -27,6 +27,6 @@ struct SliderView: View {
 
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderView(sliderValue: .constant(10), target: 15)
+        SliderView(sliderValue: .constant(10), game: GameManager())
     }
 }
